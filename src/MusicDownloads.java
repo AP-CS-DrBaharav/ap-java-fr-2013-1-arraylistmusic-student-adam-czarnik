@@ -23,16 +23,15 @@ public class MusicDownloads
    *  Postcondition:
    *   - no changes were made to downloadList.
    */
-  public DownloadInfo getDownloadInfo(String title)
-
-          
-          
-          
-          
-          
-          
-          
-
+  public DownloadInfo getDownloadInfo(String title) {
+for (int i=0; i<downloadList.size(); ++i) {
+    if (downloadList.get(i).getTitle()==title){
+        return downloadList.get(i);
+    }
+}
+return null;
+  } 
+      
   // Part (b)
 
   /** Updates downloadList with information from titles.
@@ -51,18 +50,16 @@ public class MusicDownloads
    *  - for each new entry in downloadList, the download count is equal to
    *       the number of times its title appeared in titles.
    */
-  public void updateDownloads(List<String> titles)
-
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+  public void updateDownloads(List<String> titles) {
+      for (int i=0; i<titles.size(); ++i) {
+          DownloadInfo a = getDownloadInfo(titles.get(i));
+          if (a==null) {
+              downloadList.add(new DownloadInfo(titles.get(i)));
+          } else {
+              a.incrementTimesDownloaded();
+          }
+      }
+  }
           
   /*******************************************************************************/
 
